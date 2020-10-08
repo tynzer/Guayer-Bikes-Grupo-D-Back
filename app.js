@@ -31,7 +31,7 @@ app.post("/userData", function (req, res) {
         name: req.body.name,
         email: req.body.email,
         sendEmail: req.body.sendEmail,
-        visible: true
+        enable: true
     });
     console.log(user)
     user.save().then(
