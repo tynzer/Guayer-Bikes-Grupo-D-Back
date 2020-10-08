@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const coupon = new mongoose.Schema({
-    "text":Text,
-    "discountPercentage":Number
+    text:String,
+    discountPercentage:Number
 });
-const couponModel = mongoose.model("coupon",coupon);
+const couponModel = mongoose.model("Coupon",coupon);
 module.exports = couponModel;

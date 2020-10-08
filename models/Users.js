@@ -8,6 +8,6 @@ const usuarioSchema = new mongoose.Schema({
     visible : Boolean
 });
 
-const usaurioModel = mongoose.model("users",usuarioSchema);
+const usaurioModel = mongoose.model("Users",usuarioSchema);
 
 module.exports= usaurioModel;

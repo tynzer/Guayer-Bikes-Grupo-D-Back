@@ -96,7 +96,8 @@ app.get("/getCoupon",function(req,res){
     });
 });
 //Levantar la applicacion luego de realizar la conexion de mongoose a Atlas.
-mongoose.connect(CONNECTION_STRING, function (err) {
+mongoose.connect(CONNECTION_STRING,{ useUnifiedTopology: true, useNewUrlParser: true}, function (err) {
+
     if (err) {
         console.error(err.message)
     } else {
