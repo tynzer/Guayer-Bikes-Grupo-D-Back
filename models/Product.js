@@ -5,7 +5,7 @@ const productList = new mongoose.Schema({
     "imgUrl":String,
     "inStock":Number,
     "price":Number,
-    "currency":String,Number,
+    "currency":String,
     "discountPrice":Number
 });
 const productModel = mongoose.model("product",productList);
