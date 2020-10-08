@@ -7,7 +7,8 @@ const PORT = 3001;
 const URL = `"http://localhost:${PORT}/"`;
 const CONNECTION_STRING = "mongodb+srv://root:guayerd@cluster0.elmbs.mongodb.net/guayerd-bikes?retryWrites=true&w=majority";
 
-const User = require("./models/Users")
+const User = require("./models/Users");
+const Image = require("./models/Images");
 
 //////////////////// Aplico Middlewares
 app.use(express.json());
@@ -39,6 +40,20 @@ app.post("/userData", function (req, res) {
                 res.status(500).send({ message: "Error interno, no se pudo guardar" })
             })
 })
+
+
+//REFACTOR Home - Obtener el banner promocional del servidor
+
+app.get("/getHomeBanner", function (req, res) {
+    Image.find({ name: "getHomeBanner" })
+        .then(function (imageFound) {
+            if (imageFound) return res.status(200).send(imageFound)
+            res.status(404).send({ message: "Imagen no encontrada" })
+        }).catch(function (error) {
+            res.status(500).send({ message: "Error interno, no se pudo busar la imagen" })
+        })
+})
+
 
 
 //Levantar la applicacion luego de realizar la conexion de mongoose a Atlas.
