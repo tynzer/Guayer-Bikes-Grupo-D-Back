@@ -10,7 +10,7 @@ const CONNECTION_STRING = "mongodb+srv://root:guayerd@cluster0.elmbs.mongodb.net
 const User = require("./models/Users");
 const Image = require("./models/Images");
 const Products = require("./models/Product");
-const Cupon = require("./models/Cupon.js");
+const Coupon = require("./models/Coupon.js");
 
 //////////////////// Aplico Middlewares
 app.use(express.json());
@@ -61,10 +61,18 @@ app.get("/productList",function(req,res){
         if(productsFounded) return res.status(200).send(productsFounded)
         res.status(404).send({message:"Products not found"});
     }).catch(function(error){
-        res.status(500).send({message:"Internal error, the product could not be searched"})
+        res.status(500).send({message:"Internal error, the product could not be searched."})
     });
 });
-
+//REFACTOR Productos - Cupón de descuento
+app.get("/getCoupon",function(req,res){
+    Coupon.find({name:"getCoupon"}).then(function(CouponFounded){
+        if(CouponFounded) return res.status(200).send(CouponFounded)
+        res.status(404).send({message:"Coupon not found."});
+    }).catch(function(error){
+        res.status(500).send({message:"Internal error, the coupon could not be searched."})
+    });
+});
 //Levantar la applicacion luego de realizar la conexion de mongoose a Atlas.
 mongoose.connect(CONNECTION_STRING, function (err) {
     if (err) {
