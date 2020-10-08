@@ -79,7 +79,7 @@ app.post('/submitForm',function(req,res){
 
 //REFACTOR Productos - Obtener productos desde el servidor
 app.get("/productList",function(req,res){
-    Products.find({name:"productsList"}).then(function(productsFounded){
+    Products.find({enable:true}).then(function(productsFounded){
         if(productsFounded) return res.status(200).send(productsFounded)
         res.status(404).send({message:"Products not found"});
     }).catch(function(error){
@@ -88,7 +88,7 @@ app.get("/productList",function(req,res){
 });
 //REFACTOR Productos - Cupón de descuento
 app.get("/getCoupon",function(req,res){
-    Coupon.find({name:"getCoupon"}).then(function(CouponFounded){
+    Coupon.find({name:"Coupon"}).then(function(CouponFounded){
         if(CouponFounded) return res.status(200).send(CouponFounded)
         res.status(404).send({message:"Coupon not found."});
     }).catch(function(error){
