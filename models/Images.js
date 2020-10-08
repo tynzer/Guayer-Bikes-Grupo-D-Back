@@ -5,7 +5,7 @@ const imageSchema = new mongoose.Schema({
     imgUrl: String,
     link: String,
     name: String,    
-    visible : Boolean
+    enable:Boolean
 });
 
 const imageModel = mongoose.model("Images",imageSchema);

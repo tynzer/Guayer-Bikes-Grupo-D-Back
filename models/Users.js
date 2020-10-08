@@ -5,7 +5,7 @@ const usuarioSchema = new mongoose.Schema({
     name : String,
     email : String,
     sendEmail : Boolean,
-    visible : Boolean
+    enable:Boolean
 });
 
 const usaurioModel = mongoose.model("Users",usuarioSchema);
