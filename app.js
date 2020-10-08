@@ -9,12 +9,9 @@ const CONNECTION_STRING = "mongodb+srv://root:guayerd@cluster0.elmbs.mongodb.net
 
 const User = require("./models/Users");
 const Image = require("./models/Images");
-<<<<<<< HEAD
 const Form = require("./models/Form");
-=======
 const Products = require("./models/Product");
 const Coupon = require("./models/Coupon.js");
->>>>>>> 8cc4b464a48170bb07c1af1413958650337c7d4e
 
 //////////////////// Aplico Middlewares
 app.use(express.json());
@@ -59,7 +56,6 @@ app.get("/getHomeBanner", function (req, res) {
             res.status(500).send({ message: "Error interno, no se pudo busar la imagen" })
         })
 })
-<<<<<<< HEAD
 
 
 //REFACTOR Contacto - Enviar los datos del formulario al servidor.
@@ -81,7 +77,6 @@ app.post('/submitForm',function(req,res){
 })
 
 
-=======
 //REFACTOR Productos - Obtener productos desde el servidor
 app.get("/productList",function(req,res){
     Products.find({name:"productsList"}).then(function(productsFounded){
@@ -100,7 +95,6 @@ app.get("/getCoupon",function(req,res){
         res.status(500).send({message:"Internal error, the coupon could not be searched."})
     });
 });
->>>>>>> 8cc4b464a48170bb07c1af1413958650337c7d4e
 //Levantar la applicacion luego de realizar la conexion de mongoose a Atlas.
 mongoose.connect(CONNECTION_STRING, function (err) {
     if (err) {
