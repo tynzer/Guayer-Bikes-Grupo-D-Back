@@ -102,7 +102,7 @@ mongoose.connect(CONNECTION_STRING,{ useUnifiedTopology: true, useNewUrlParser: 
         console.error(err.message)
     } else {
         console.log("Conexion establecida");
-        app.listen(PORT, function () {
+        app.listen(process.env.PORT || PORT, function () {
             console.log("Server Express Listening");
         });
     }
