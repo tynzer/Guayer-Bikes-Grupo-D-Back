@@ -9,6 +9,8 @@ const CONNECTION_STRING = "mongodb+srv://root:guayerd@cluster0.elmbs.mongodb.net
 
 const User = require("./models/Users");
 const Image = require("./models/Images");
+const Products = require("./models/Product");
+const Cupon = require("./models/Cupon.js");
 
 //////////////////// Aplico Middlewares
 app.use(express.json());
@@ -53,8 +55,15 @@ app.get("/getHomeBanner", function (req, res) {
             res.status(500).send({ message: "Error interno, no se pudo busar la imagen" })
         })
 })
-
-
+//REFACTOR Productos - Obtener productos desde el servidor
+app.get("/productList",function(req,res){
+    Products.find({name:"productsList"}).then(function(productsFounded){
+        if(productsFounded) return res.status(200).send(productsFounded)
+        res.status(404).send({message:"Products not found"});
+    }).catch(function(error){
+        res.status(500).send({message:"Internal error, the product could not be searched"})
+    });
+});
 
 //Levantar la applicacion luego de realizar la conexion de mongoose a Atlas.
 mongoose.connect(CONNECTION_STRING, function (err) {
