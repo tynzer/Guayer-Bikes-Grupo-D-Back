@@ -9,6 +9,7 @@ const CONNECTION_STRING = "mongodb+srv://root:guayerd@cluster0.elmbs.mongodb.net
 
 const User = require("./models/Users");
 const Image = require("./models/Images");
+const Form = require("./models/Form");
 
 //////////////////// Aplico Middlewares
 app.use(express.json());
@@ -54,6 +55,24 @@ app.get("/getHomeBanner", function (req, res) {
         })
 })
 
+
+//REFACTOR Contacto - Enviar los datos del formulario al servidor.
+
+app.post('/submitForm',function(req,res){
+    let form = new Form({
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        subject: req.body.subject,    
+        message : req.body.message
+    });
+    form.save().then(function(formSaved){
+        res.status(201).send({form:formSaved});
+    }).catch(function(err){
+        res.status(500).send({error:"Error interno, no se pudo guardar"});
+        console.log(err);
+    })
+})
 
 
 //Levantar la applicacion luego de realizar la conexion de mongoose a Atlas.
