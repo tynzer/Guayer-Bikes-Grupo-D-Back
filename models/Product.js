@@ -6,7 +6,8 @@ const productList = new mongoose.Schema({
     inStock:Number,
     price:Number,
     currency:String,
-    discountPrice:Number
+    discountPrice:Number,
+    enable:Boolean
 });
 const productModel = mongoose.model("Product",productList);
 module.exports = productModel;
