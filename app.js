@@ -50,7 +50,7 @@ app.post("/userData", function (req, res) {
 app.get("/getHomeBanner", function (req, res) {
     Image.find({ name: "getHomeBanner" })
         .then(function (imageFound) {
-            if (imageFound) return res.status(200).send(imageFound)
+            if (imageFound) return res.status(200).json(imageFound)
             res.status(404).send({ message: "Imagen no encontrada" })
         }).catch(function (error) {
             res.status(500).send({ message: "Error interno, no se pudo busar la imagen" })
