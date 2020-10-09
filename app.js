@@ -88,7 +88,7 @@ app.get("/productList",function(req,res){
 });
 //REFACTOR Productos - Cupón de descuento
 app.get("/getCoupon",function(req,res){
-    Coupon.findOne({name:"Coupon"}).then(function(CouponFounded){
+    Coupon.findOne({name:"coupon"}).then(function(CouponFounded){
         if(CouponFounded) return res.status(200).send(CouponFounded)
         res.status(404).send({message:"Coupon not found."});
     }).catch(function(error){
