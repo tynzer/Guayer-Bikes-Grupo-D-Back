@@ -4,5 +4,5 @@ const coupon = new mongoose.Schema({
     discountPercentage:Number,
     name:String
 });
-const couponModel = mongoose.model("Coupon",coupon);
+const couponModel = mongoose.model("Coupons",coupon);
 module.exports = couponModel;
