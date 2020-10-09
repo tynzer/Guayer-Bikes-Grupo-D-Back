@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3001;
 const CONNECTION_STRING = "mongodb+srv://root:guayerd@cluster0.elmbs.mongodb.net/guayerd-bikes?retryWrites=true&w=majority";
 
-const User = require("./models/Users");
+const User = require("./models/User");
 const Image = require("./models/Image");
 const Form = require("./models/Form");
 const Products = require("./models/Product");
