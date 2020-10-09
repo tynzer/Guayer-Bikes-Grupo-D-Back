@@ -9,5 +9,5 @@ const productSchema = new mongoose.Schema({
     discountPrice:Number,
     enabled:Boolean
 });
-const productModel = mongoose.model("Product",productSchema);
-module.exports = productModel;
+const ProductModel = mongoose.model("Product",productSchema);
+module.exports = ProductModel;
