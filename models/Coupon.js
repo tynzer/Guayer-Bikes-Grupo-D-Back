@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const coupon = new mongoose.Schema({
+const couponSchema = new mongoose.Schema({
     text:String,
     discountPercentage:Number,
     name:String
 });
-const couponModel = mongoose.model("Coupons",coupon);
+const couponModel = mongoose.model("Coupon",couponSchema);
 module.exports = couponModel;

@@ -4,25 +4,21 @@ const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
 const PORT = 3001;
-const URL = `"http://localhost:${PORT}/"`;
 const CONNECTION_STRING = "mongodb+srv://root:guayerd@cluster0.elmbs.mongodb.net/guayerd-bikes?retryWrites=true&w=majority";
 
 const User = require("./models/Users");
-const Image = require("./models/Images");
+const Image = require("./models/Image");
 const Form = require("./models/Form");
 const Products = require("./models/Product");
-const Coupon = require("./models/Coupon.js");
+const Coupon = require("./models/Coupon");
 
 //////////////////// Aplico Middlewares
 app.use(express.json());
 app.use(cors());
 app.use(morgan("short"));
 
-/* //Ping
-app.get('/', function (req, res) {
-    res.status(200).send({ message: "Server Express Up & Running" });
-})
- */
+
+//REFACTOR Recolectar datos del usuario y enviar al servidor.
 
 app.post("/userData", function (req, res) {
 
@@ -31,7 +27,7 @@ app.post("/userData", function (req, res) {
         name: req.body.name,
         email: req.body.email,
         sendEmail: req.body.sendEmail,
-        enable: true
+        enabled: true
     });
     console.log(user)
     user.save().then(
@@ -78,15 +74,19 @@ app.post('/submitForm',function(req,res){
 
 
 //REFACTOR Productos - Obtener productos desde el servidor
+
 app.get("/productList",function(req,res){
-    Products.find({enable:true}).then(function(productsFounded){
+    Products.find({enabled:true}).then(function(productsFounded){
         if(productsFounded) return res.status(200).send(productsFounded)
         res.status(404).send({message:"Products not found"});
     }).catch(function(error){
         res.status(500).send({message:"Internal error, the product could not be searched."})
     });
 });
+
+
 //REFACTOR Productos - Cupón de descuento
+
 app.get("/getCoupon",function(req,res){
     Coupon.findOne({name:"getCoupon"}).then(function(CouponFounded){
         if(CouponFounded) return res.status(200).send(CouponFounded)
@@ -95,7 +95,10 @@ app.get("/getCoupon",function(req,res){
         res.status(500).send({message:"Internal error, the coupon could not be searched."})
     });
 });
+
+
 //Levantar la applicacion luego de realizar la conexion de mongoose a Atlas.
+
 mongoose.connect(CONNECTION_STRING,{ useUnifiedTopology: true, useNewUrlParser: true}, function (err) {
 
     if (err) {

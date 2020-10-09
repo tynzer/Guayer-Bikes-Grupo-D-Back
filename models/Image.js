@@ -5,9 +5,9 @@ const imageSchema = new mongoose.Schema({
     imgUrl: String,
     link: String,
     name: String,    
-    enable:Boolean
+    enabled:Boolean
 });
 
-const imageModel = mongoose.model("Images",imageSchema);
+const imageModel = mongoose.model("Image",imageSchema);
 
 module.exports= imageModel;
