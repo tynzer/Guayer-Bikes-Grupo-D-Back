@@ -48,9 +48,9 @@ app.post("/userData", function (req, res) {
 //REFACTOR Home - Obtener el banner promocional del servidor
 
 app.get("/getHomeBanner", function (req, res) {
-    Image.find({ name: "getHomeBanner" })
+    Image.findOne({ name: "getHomeBanner" })
         .then(function (imageFound) {
-            if (imageFound) return res.status(200).json(imageFound)
+            if (imageFound) return res.status(200).send(imageFound)
             res.status(404).send({ message: "Imagen no encontrada" })
         }).catch(function (error) {
             res.status(500).send({ message: "Error interno, no se pudo busar la imagen" })
@@ -88,7 +88,7 @@ app.get("/productList",function(req,res){
 });
 //REFACTOR Productos - Cupón de descuento
 app.get("/getCoupon",function(req,res){
-    Coupon.find({name:"Coupon"}).then(function(CouponFounded){
+    Coupon.findOne({name:"Coupon"}).then(function(CouponFounded){
         if(CouponFounded) return res.status(200).send(CouponFounded)
         res.status(404).send({message:"Coupon not found."});
     }).catch(function(error){
